@@ -33,7 +33,7 @@ sudo dnf groupupdate sound-and-video
 
 ### Intel and NVIDIA
 
-Install Intel and NVIDIA drivers
+Install Intel and NVIDIA drivers.
 
 ```
 sudo dnf install intel-media-driver
@@ -70,7 +70,7 @@ EOM
 sudo dnf install google-cloud-cli
 ```
 
-Then start gcloud.
+Start gcloud.
 
 ```
 gcloud init
