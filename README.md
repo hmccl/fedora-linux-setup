@@ -109,7 +109,7 @@ sudo dnf install texlive-scheme-basic texlive-babel-portuges pandoc 'tex(modernc
 Change the login shell to ZSH.
 
 ```
-sudo usermod --shell /usr/bin/zsh helio
+sudo usermod --shell /usr/bin/zsh $USER
 ```
 
 ## Zim
