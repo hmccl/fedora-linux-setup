@@ -141,3 +141,11 @@ Clone Neovim configuration.
 ```
 git clone https://github.com/hmccl/nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
+
+## Minor tweaks
+
+Configure Thunderbird to [use plain text email](https://useplaintext.email/#thunderbird).
+
+Clone other configuration files like `.boto`, `.gitconfig` and `.vimrc`.
+
+Remap Caps Lock to Ctrl.
