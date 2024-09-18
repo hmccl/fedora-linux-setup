@@ -98,7 +98,7 @@ Remove and install packages.
 
 ```
 sudo dnf remove dragon kmahjongg kmines kpat skanpage akregator kaddressbook kde-connect krdc krfb kmail ktnef pim-data-exporter kontact korganizer kgpg kmousetool kmouth
-sudo dnf install chicken fastfetch fd-find fzf git golang gtypist luarocks neovim ripgrep vim zsh
+sudo dnf install chicken duf fastfetch fd-find fzf git golang gtypist luarocks neovim ripgrep vim zsh
 sudo dnf install francis haruna kate keepassxc konversation ktorrent thunderbird
 sudo dnf install clamav clamd clamav-update
 sudo dnf install texlive-scheme-basic texlive-babel-portuges pandoc 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)'
