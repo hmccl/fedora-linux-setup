@@ -12,7 +12,7 @@ sudo dnf upgrade
 sudo dnf autoremove
 ```
 
-After reboot make shure that the system is up to date.
+After reboot make sure that the system is up to date.
 
 ## RPM Fusion
 
@@ -42,38 +42,17 @@ sudo dnf install akmod-nvidia
 
 Wait 5 minutes and reboot.
 
-## Brave Browser
+## Packages
 
-Install Brave from their repository.
-
-```
-sudo dnf install dnf-plugins-core
-sudo dnf config-manager --add-repo https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
-sudo rpm --import https://brave-browser-rpm-release.s3.brave.com/brave-core.asc
-sudo dnf install brave-browser
-```
-
-## Google Cloud CLI
-
-Install Google Cloud CLI from their repository.
+Remove and install packages.
 
 ```
-sudo tee -a /etc/yum.repos.d/google-cloud-sdk.repo << EOM
-[google-cloud-cli]
-name=Google Cloud CLI
-baseurl=https://packages.cloud.google.com/yum/repos/cloud-sdk-el9-x86_64
-enabled=1
-gpgcheck=1
-repo_gpgcheck=0
-gpgkey=https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-EOM
-sudo dnf install google-cloud-cli
-```
-
-Start gcloud.
-
-```
-gcloud init
+sudo dnf remove dragon kmahjongg kmines kpat skanpage akregator kaddressbook kde-connect krdc krfb kmail ktnef pim-data-exporter kontact korganizer kgpg kmousetool kmouth
+sudo dnf install chicken duf fastfetch fd-find fzf git golang gtypist luarocks neovim ripgrep vim zsh
+sudo dnf install francis haruna kate keepassxc konversation ktorrent thunderbird
+sudo dnf install sqlitebrower
+sudo dnf install clamav clamd clamav-update
+sudo dnf install texlive-scheme-basic texlive-babel-portuges pandoc 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)'
 ```
 
 ## Flathub
@@ -84,24 +63,43 @@ Enable the Flathub remote.
 sudo flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 ```
 
+## Snap
+
+Install snapd.
+
+```
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+```
+
+### Brave Browser
+
+Install Brave.
+
+```
+sudo snap install brave-browser
+```
+
+### Google Cloud CLI
+
+Install Google Cloud CLI.
+
+```
+sudo snap install google-cloud-cli --classic
+```
+
+Start gcloud.
+
+```
+gcloud init
+```
+
 ## Plymouth
 
 Change the Plymouth theme to see systemd boot.
 
 ```
 sudo plymouth-set-default-theme -R details
-```
-
-## Packages
-
-Remove and install packages.
-
-```
-sudo dnf remove dragon kmahjongg kmines kpat skanpage akregator kaddressbook kde-connect krdc krfb kmail ktnef pim-data-exporter kontact korganizer kgpg kmousetool kmouth
-sudo dnf install chicken duf fastfetch fd-find fzf git golang gtypist luarocks neovim ripgrep vim zsh
-sudo dnf install francis haruna kate keepassxc konversation ktorrent thunderbird
-sudo dnf install clamav clamd clamav-update
-sudo dnf install texlive-scheme-basic texlive-babel-portuges pandoc 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)'
 ```
 
 ## ZSH
