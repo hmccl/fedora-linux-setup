@@ -48,7 +48,7 @@ Remove and install packages.
 
 ```
 sudo dnf remove dragon kmahjongg kmines kpat skanpage akregator kaddressbook kde-connect krdc krfb kmail ktnef pim-data-exporter kontact korganizer kgpg kmousetool kmouth
-sudo dnf install chicken duf fastfetch fd-find fzf git golang gtypist luarocks neovim ripgrep vim zsh
+sudo dnf install chicken duf fastfetch fd-find fish fzf git golang gtypist luarocks neovim ripgrep vim
 sudo dnf install francis haruna kate keepassxc konversation ktorrent thunderbird
 sudo dnf install sqlitebrower
 sudo dnf install clamav clamd clamav-update
@@ -102,20 +102,12 @@ Change the Plymouth theme to see systemd boot.
 sudo plymouth-set-default-theme -R details
 ```
 
-## ZSH
+## Fish
 
-Change the login shell to ZSH.
-
-```
-sudo usermod --shell /usr/bin/zsh $USER
-```
-
-## Zim
-
-Install Zim Framework for ZSH.
+Change the login shell to Fish.
 
 ```
-curl -fsSL https://raw.githubusercontent.com/zimfw/install/master/install.zsh | zsh
+sudo usermod --shell /usr/bin/fish $USER
 ```
 
 ## Iosevka
