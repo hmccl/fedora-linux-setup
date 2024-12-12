@@ -1,59 +1,64 @@
-# Fedora 40 KDE Plasma Setup
+# Fedora 41 KDE Plasma Setup
 
-This is a guide to setup Fedora 40 KDE.
+This is a guide to setup Fedora 41 KDE.
 
 ## First boot
 
-Clean up the dnf cache and upgrade the system. Wait for 5 minutes (in case of a kernel update) and reboot.
+Upgrade the system. Wait for 5 minutes (in case of a kernel update) and reboot.
+
+```
+sudo dnf upgrade
+```
+
+These are useful `dnf` commands.
 
 ```
 sudo dnf clean all
-sudo dnf upgrade
 sudo dnf autoremove
+dnf history list
 ```
-
-After reboot make sure that the system is up to date.
 
 ## RPM Fusion
 
 RPM Fusion is a repository that contains free and nonfree software.
+
+```
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+sudo dnf update @core
+```
+
+### NVIDIA
+
+Upgrade the system and install NVIDIA drivers.
+
+```
+sudo dnf upgrade
+sudo dnf install akmod-nvidia
+```
+
+Wait for 5 minutes (see `top`) and reboot.
+
+Run `modinfo -F version nvidia` to see the version of the driver.
 
 ### Multimedia
 
 Install multimedia codecs.
 
 ```
-sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
-sudo dnf config-manager --enable fedora-cisco-openh264
-sudo dnf groupupdate core
 sudo dnf swap ffmpeg-free ffmpeg --allowerasing
-sudo dnf groupupdate multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
-sudo dnf groupupdate sound-and-video
+sudo dnf update @multimedia --setopt="install_weak_deps=False" --exclude=PackageKit-gstreamer-plugin
 ```
 
-### Intel and NVIDIA
+### Hardware acceleration
 
-Install Intel and NVIDIA drivers.
+Install Intel media driver.
 
 ```
 sudo dnf install intel-media-driver
-sudo dnf install akmod-nvidia
 ```
 
-Wait 5 minutes and reboot.
-
-## Packages
-
-Remove and install packages.
-
-```
-sudo dnf remove dragon kmahjongg kmines kpat skanpage akregator kaddressbook kde-connect krdc krfb kmail ktnef pim-data-exporter kontact korganizer kgpg kmousetool kmouth
-sudo dnf install chicken duf fastfetch fd-find fish fzf git golang gtypist luarocks neovim ripgrep vim
-sudo dnf install francis haruna kate keepassxc konversation ktorrent thunderbird
-sudo dnf install sqlitebrower
-sudo dnf install clamav clamd clamav-update
-sudo dnf install texlive-scheme-basic texlive-babel-portuges pandoc 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)'
-```
+Reboot.
 
 ## Flathub
 
@@ -69,7 +74,26 @@ Install snapd.
 
 ```
 sudo dnf install snapd
+```
+
+Log out.
+
+```
 sudo ln -s /var/lib/snapd/snap /snap
+```
+
+Log out again.
+
+## Packages
+
+Remove and install packages.
+
+```
+sudo dnf remove kmahjongg kmines kpat akregator kde-connect kmail krdc krfb ktnef pim-data-exporter dragon kaddressbook kontact korganizer kgpg kmouth
+sudo dnf install duf fastfetch fd-find fish fzf git gtypist luarocks neovim ripgrep vim
+sudo dnf install francis haruna kate keepassxc kitty konversation ktorrent sqlitebrowser thunderbird
+sudo dnf install clamav clamd clamav-update
+sudo dnf install pandoc texlive-scheme-basic texlive-babel-portuges 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)' langpacks-pt_BR
 ```
 
 ### Brave Browser
@@ -77,7 +101,31 @@ sudo ln -s /var/lib/snapd/snap /snap
 Install Brave.
 
 ```
-sudo snap install brave-browser
+flatpak install flathub com.brave.Browser
+```
+
+### Pika Backup
+
+Install Pika Backup.
+
+```
+flatpak install flathub org.gnome.World.PikaBackup
+```
+
+### Telegram
+
+Install Telegram.
+
+```
+flatpak install flathub org.telegram.desktop
+```
+
+### Chezmoi
+
+Install chezmoi.
+
+```
+sudo snap install chezmoi --classic
 ```
 
 ### Google Cloud CLI
@@ -88,10 +136,14 @@ Install Google Cloud CLI.
 sudo snap install google-cloud-cli --classic
 ```
 
-Start gcloud.
+## Virtualization
+
+Install Virtual Machine Manager.
 
 ```
-gcloud init
+sudo dnf install @virtualization
+sudo systemctl start libvirtd
+sudo systemctl enable libvirtd
 ```
 
 ## Plymouth
@@ -112,16 +164,16 @@ sudo usermod --shell /usr/bin/fish $USER
 
 ## Iosevka
 
-Install Iosevka Nerd Font.
+Install Iosevka Font.
 
 ```
 mkdir -p ~/.local/share/fonts/Iosevka
 cd ~/.local/share/fonts/Iosevka
-curl -OL https://github.com/ryanoasis/nerd-fonts/releases/latest/download/Iosevka.tar.xz
-tar xvf Iosevka.tar.xz
-rm Iosevka.tar.xz
+curl -OL https://github.com/be5invis/Iosevka/releases/download/v32.2.1/SuperTTC-Iosevka-32.2.1.zip
+unzip SuperTTC-Iosevka-32.2.1.zip
+rm SuperTTC-Iosevka-32.2.1.zip
 cd
-fc-cache -v
+fc-cache
 ```
 
 ## Neovim
@@ -129,13 +181,31 @@ fc-cache -v
 Clone Neovim configuration.
 
 ```
-git clone https://github.com/hmccl/nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/hmccl/nvim.git $HOME/.config/nvim
 ```
 
-## Minor tweaks
+## KDE
+
+KDE configuration.
+
+- Caps Lock as Ctrl
+- Create shortcuts
+- Choose dark theme
+- Remove animations
+- Deactivate sleep
+
+## Other
+
+### Thuderbird
 
 Configure Thunderbird to [use plain text email](https://useplaintext.email/#thunderbird).
 
-Clone other configuration files like `.boto`, `.gitconfig` and `.vimrc`.
+### dotfiles
 
-Remap Caps Lock to Ctrl.
+Clone dotfiles.
+
+- `.boto`
+- `.gitconfig`
+- `.vimrc`
+- `config.fish`
+- `kitty.conf`
