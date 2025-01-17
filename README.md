@@ -90,8 +90,8 @@ Remove and install packages.
 
 ```
 sudo dnf remove kmahjongg kmines kpat akregator kde-connect kmail krdc krfb ktnef pim-data-exporter dragon kaddressbook kontact korganizer kgpg kmouth
-sudo dnf install btop duf fastfetch fd-find fish fzf git gtypist luarocks neovim ripgrep vim
-sudo dnf install francis haruna kate keepassxc kitty konversation ktorrent sqlitebrowser thunderbird
+sudo dnf install eza fastfetch fd-find fish fzf git gtypist luarocks neovim ripgrep vim
+sudo dnf install francis haruna merkuro kate keepassxc konversation ktorrent sqlitebrowser thunderbird
 sudo dnf install clamav clamd clamav-update
 sudo dnf install pandoc texlive-scheme-basic texlive-babel-portuges 'tex(moderncv.cls)' 'tex(academicons.sty)' 'tex(multirow.sty)' 'tex(arydshln.sty)' 'tex(fontawesome5.sty)' langpacks-pt_BR
 ```
@@ -162,20 +162,6 @@ Change the login shell to Fish.
 sudo usermod --shell /usr/bin/fish $USER
 ```
 
-## Iosevka
-
-Install Iosevka Font.
-
-```
-mkdir -p ~/.local/share/fonts/Iosevka
-cd ~/.local/share/fonts/Iosevka
-curl -OL https://github.com/be5invis/Iosevka/releases/download/v32.3.1/SuperTTC-Iosevka-32.3.1.zip
-unzip SuperTTC-Iosevka-32.3.1.zip
-rm SuperTTC-Iosevka-32.3.1.zip
-cd
-fc-cache
-```
-
 ## Neovim
 
 Clone Neovim configuration.
@@ -208,4 +194,3 @@ Clone dotfiles.
 - `.gitconfig`
 - `.vimrc`
 - `config.fish`
-- `kitty.conf`
